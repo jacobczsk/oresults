@@ -1,0 +1,165 @@
+@import "./config.scss";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+* {
+    font-family: $font, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin: 5px;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+
+    #text {
+        width: 100%;
+
+        #lang_select {
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+            margin: 5px;
+
+            button {
+                cursor: pointer;
+                border: 1px solid gray;
+                padding: 3px;
+                border-radius: 3px;
+                display: inline-block;
+
+                img {
+                    display: block;
+                }
+
+                &:hover {
+                    background-color: lightgray;
+                }
+            }
+        }
+    }
+}
+
+#content {
+    flex-grow: 1;
+    display: flex;
+    overflow-y: auto;
+
+    section {
+        padding: 7px;
+        flex-grow: 1;
+    }
+
+    #class_select {
+        #class_list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+
+            button {
+                cursor: pointer;
+                min-width: 5ch;
+                min-height: 2em;
+                padding: 3px;
+            }
+
+            .women {
+                color: $women-class-color;
+            }
+
+            .men {
+                color: $men-class-color;
+            }
+
+            .open {
+                color: $open-class-color;
+            }
+        }
+    }
+
+    #results {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            display: inline-block;
+        }
+
+        #res_wrap {
+            overflow-y: auto;
+
+            table {
+                border-collapse: collapse;
+                border-spacing: 10px;
+                height: 100%;
+
+                thead {
+                    tr {
+                        border-bottom: 2px solid black;
+                    }
+
+                    #runner_place {
+                        min-width: 32px;
+                    }
+
+                    #runner_start,
+                    #runner_result,
+                    #runner_plus {
+                        min-width: 64px;
+                    }
+
+                    #runner_name,
+                    #runner_club {
+                        min-width: 96px;
+                    }
+                }
+
+                tbody {
+                    td {
+                        $table-padding: 4px;
+                        padding-top: $table-padding;
+                        padding-bottom: $table-padding;
+
+                        padding-right: 20px;
+
+                        .running {
+                            color: gray;
+                        }
+                    }
+
+                    tr {
+                        &:nth-child(even) {
+                            background-color: #f2f2f2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #about {
+        #font::after {
+            content: $font;
+        }
+    }
+
+    .back {
+        padding: 3px;
+        font-size: 1em;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+}
