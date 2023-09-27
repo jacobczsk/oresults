@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LOK-o výsledky</title>
+
+    <script src="./script/Config.js"></script>
+    <script src="./script/Language.js"></script>
+    <script src="./script/LiveresultatAPI.js"></script>
+    <script src="./script/Cache.js"></script>
+    <script src="./script/UI.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style/main.css">
+
+</head>
+
+<body>
+    <header>
+        <img id="logo" alt="Logo">
+        <div id="text">
+            <h1 id="comp_name"></h1>
+            <h3 id="live_results"></h3>
+            <div id="lang_select">
+                <button onclick="LLIResults.UI.setLanguage(new LLIResults.Language.Czech());"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_Czech_Republic.svg"
+                        alt="Česká vlajka" height="15px"></button>
+                <button onclick="LLIResults.UI.setLanguage(new LLIResults.Language.English());"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg"
+                        alt="British flag" height="15px"></button>
+            </div>
+            <span id="about_link"></span>
+        </div>
+    </header>
+    <hr>
+    <div id="content">
+        <section id="class_select" class="section">
+            <h3 id="select_class"></h3>
+            <div id="class_list"></div>
+        </section>
+        <section id="results" class="section">
+            <div>
+                <button class="back"></button>
+                <h2 id="page_name"></h2>
+                <progress id="auto_time" max="100" value="0"></progress>
+            </div>
+            <div id="res_wrap">
+                <table id="results_table">
+                    <thead>
+                        <tr>
+                            <th id="runner_place">#</th>
+                            <th id="runner_name"></th>
+                            <th id="runner_club"></th>
+                            <th id="runner_start"></th>
+                            <th id="runner_result"></th>
+                            <th id="runner_plus"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="crt_body"></tbody>
+                </table>
+            </div>
+        </section>
+        <section id="about" class="section">
+            <button class="back"></button>
+            <p id="about_html"></p>
+            <span id="font"></span>
+        </section>
+    </div>
+    <script type="module">
+        LLIResults.UI.saveDefaultState();
+        await LLIResults.UI.setupUI();
+    </script>
+</body>
+
+</html>
