@@ -1,6 +1,6 @@
 "use strict";
-var LLIResults;
-(function (LLIResults) {
+var OResults;
+(function (OResults) {
     var LiveresultatAPI;
     (function (LiveresultatAPI) {
         const BASE_URL = "https://liveresultat.orientering.se/api.php";
@@ -14,7 +14,7 @@ var LLIResults;
             _classes = [];
             static async initialize(comp_id) {
                 let comp;
-                if (LLIResults.Cache.competition.id !== comp_id) {
+                if (OResults.Cache.competition.id !== comp_id) {
                     let compData = await getJSON(`${BASE_URL}?method=getcompetitioninfo&comp=${comp_id}`);
                     if (compData.id === undefined || compData.name === undefined || compData.organizer === undefined || compData.date === undefined || compData.isPublic === undefined) {
                         throw new CompetitionNotFoundError("Competition with this ID not found!");
@@ -25,10 +25,10 @@ var LLIResults;
                     comp._organizer = compData.organizer;
                     comp._date = Date.parse(compData.date);
                     comp._public = compData.isPublic;
-                    LLIResults.Cache.competition = comp;
+                    OResults.Cache.competition = comp;
                 }
                 else {
-                    comp = LLIResults.Cache.competition;
+                    comp = OResults.Cache.competition;
                 }
                 return comp;
             }
@@ -152,5 +152,5 @@ var LLIResults;
             return new Date(new Date().setHours(0, 0, time / 100));
         }
         LiveresultatAPI.convertTime = convertTime;
-    })(LiveresultatAPI = LLIResults.LiveresultatAPI || (LLIResults.LiveresultatAPI = {}));
-})(LLIResults || (LLIResults = {}));
+    })(LiveresultatAPI = OResults.LiveresultatAPI || (OResults.LiveresultatAPI = {}));
+})(OResults || (OResults = {}));

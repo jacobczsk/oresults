@@ -1,6 +1,6 @@
 "use strict";
-var LLIResults;
-(function (LLIResults) {
+var OResults;
+(function (OResults) {
     var Language;
     (function (Language_1) {
         class Language {
@@ -42,5 +42,5 @@ var LLIResults;
             font = "Used font: ";
         }
         Language_1.English = English;
-    })(Language = LLIResults.Language || (LLIResults.Language = {}));
-})(LLIResults || (LLIResults = {}));
+    })(Language = OResults.Language || (OResults.Language = {}));
+})(OResults || (OResults = {}));

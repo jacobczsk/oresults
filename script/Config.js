@@ -1,9 +1,9 @@
 "use strict";
-var LLIResults;
-(function (LLIResults) {
+var OResults;
+(function (OResults) {
     var Config;
     (function (Config) {
         Config.COMP_ID = 26774;
         Config.LOGO_PATH = "img/logo.png";
-    })(Config = LLIResults.Config || (LLIResults.Config = {}));
-})(LLIResults || (LLIResults = {}));
+    })(Config = OResults.Config || (OResults.Config = {}));
+})(OResults || (OResults = {}));

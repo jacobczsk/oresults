@@ -1,10 +1,10 @@
 "use strict";
-var LLIResults;
-(function (LLIResults) {
+var OResults;
+(function (OResults) {
     var UI;
     (function (UI) {
         const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-        UI.language = new LLIResults.Language.Czech();
+        UI.language = new OResults.Language.Czech();
         let defaultState;
         function saveDefaultState() {
             defaultState = document.body.innerHTML;
@@ -12,7 +12,7 @@ var LLIResults;
         UI.saveDefaultState = saveDefaultState;
         async function setupUI(showClassSelect = false) {
             document.body.innerHTML = defaultState;
-            let comp = await LLIResults.LiveresultatAPI.Competition.initialize(LLIResults.Config.COMP_ID);
+            let comp = await OResults.LiveresultatAPI.Competition.initialize(OResults.Config.COMP_ID);
             $("#runner_name").text(UI.language.runner_name);
             $("#runner_start").text(UI.language.runner_start);
             $("#runner_result").text(UI.language.runner_result);
@@ -28,13 +28,13 @@ var LLIResults;
                 $("#font").html(UI.language.font);
                 $(".back").html(`<i class="bi bi-arrow-left"></i> ${UI.language.back}`).on('click', () => renderClassList(comp));
                 renderClassList(comp);
-                $("#logo").hide().attr("height", $("header").height() ?? 150).attr("src", LLIResults.Config.LOGO_PATH).show();
+                $("#logo").hide().attr("height", $("header").height() ?? 150).attr("src", OResults.Config.LOGO_PATH).show();
                 if (showClassSelect)
                     showSection("class_select");
             }
             else {
                 $("#lang_select, #about_link, .back").hide();
-                $("#logo").hide().attr("height", $("header").height() ?? 150).attr("src", LLIResults.Config.LOGO_PATH).show();
+                $("#logo").hide().attr("height", $("header").height() ?? 150).attr("src", OResults.Config.LOGO_PATH).show();
                 showSection('results');
                 await comp.updateClasses();
                 await comp.classes[0].updateResults();
@@ -101,19 +101,19 @@ var LLIResults;
         UI.renderClassList = renderClassList;
         async function showClassResults(className) {
             showSection('results');
-            LLIResults.Cache.currentResultsMode = "Class";
-            let oClass = LLIResults.Cache.competition.classes.find(c => c.name === className);
+            OResults.Cache.currentResultsMode = "Class";
+            let oClass = OResults.Cache.competition.classes.find(c => c.name === className);
             if (!oClass)
                 return;
-            LLIResults.Cache.currentClass = oClass;
+            OResults.Cache.currentClass = oClass;
             $("#crt_body").html(`<tr><td colspan="100%" style="text-align:center">${UI.language.loading}...</td></tr>`);
             await renderClassResults(oClass);
-            LLIResults.Cache.currentResultsInterval = setInterval(() => renderClassResults(LLIResults.Cache.currentClass), 15000);
+            OResults.Cache.currentResultsInterval = setInterval(() => renderClassResults(OResults.Cache.currentClass), 15000);
         }
         UI.showClassResults = showClassResults;
         async function renderClassResults(oClass, update = true) {
             $("#runner_club").text(UI.language.runner_club);
-            clearInterval(LLIResults.Cache.currentRunningInterval);
+            clearInterval(OResults.Cache.currentRunningInterval);
             $("#page_name").text(oClass.name);
             let tbody = $("#crt_body");
             if (update) {
@@ -124,22 +124,22 @@ var LLIResults;
                 tbody.append(`<tr><td>${runner.place}</td><td>${runner.name}</td><td><a href="javascript:LLIResults.UI.showClubResults('${runner.club}');">${runner.club}</a></td><td>${runner.start.toLocaleTimeString()}</td><td class="result">${getResult(runner)}</td><td>${getLost(runner)}</td></tr>`);
             }
             last_now = new Date().getTime();
-            LLIResults.Cache.currentRunningInterval = setInterval(updateTimes, 1000);
+            OResults.Cache.currentRunningInterval = setInterval(updateTimes, 1000);
         }
         UI.renderClassResults = renderClassResults;
         async function showClubResults(clubName) {
             showSection('results');
-            LLIResults.Cache.currentResultsMode = "Club";
-            let club = new LLIResults.LiveresultatAPI.Club(clubName, LLIResults.Cache.competition.id);
-            LLIResults.Cache.currentClub = club;
+            OResults.Cache.currentResultsMode = "Club";
+            let club = new OResults.LiveresultatAPI.Club(clubName, OResults.Cache.competition.id);
+            OResults.Cache.currentClub = club;
             $("#crt_body").html(`<tr><td colspan="100%" style="text-align:center">${UI.language.loading}...</td></tr>`);
             await renderClubResults(club);
-            LLIResults.Cache.currentResultsInterval = setInterval(() => renderClubResults(LLIResults.Cache.currentClub), 15000);
+            OResults.Cache.currentResultsInterval = setInterval(() => renderClubResults(OResults.Cache.currentClub), 15000);
         }
         UI.showClubResults = showClubResults;
         async function renderClubResults(club, update = true) {
             $("#runner_club").text(UI.language.runner_cat);
-            clearInterval(LLIResults.Cache.currentRunningInterval);
+            clearInterval(OResults.Cache.currentRunningInterval);
             $("#page_name").text(club.name);
             let tbody = $("#crt_body");
             if (update) {
@@ -150,7 +150,7 @@ var LLIResults;
                 tbody.append(`<tr><td>${runner.place}</td><td>${runner.name}</td><td><a href="javascript:LLIResults.UI.showClassResults('${runner.oClass}');">${runner.oClass}</a></td><td>${runner.start.toLocaleTimeString()}</td><td class="result">${getResult(runner)}</td><td>${getLost(runner)}</td></tr>`);
             }
             last_now = new Date().getTime();
-            LLIResults.Cache.currentRunningInterval = setInterval(updateTimes, 1000);
+            OResults.Cache.currentRunningInterval = setInterval(updateTimes, 1000);
         }
         UI.renderClubResults = renderClubResults;
         function getMsSinceMidnight(d) {
@@ -195,24 +195,24 @@ var LLIResults;
             last_now = new Date().getTime();
         }
         function showSection(name) {
-            clearInterval(LLIResults.Cache.currentResultsInterval);
-            LLIResults.Cache.currentResultsInterval = undefined;
+            clearInterval(OResults.Cache.currentResultsInterval);
+            OResults.Cache.currentResultsInterval = undefined;
             $("#crt_body").html("");
             $(".section").hide();
-            LLIResults.Cache.currentSection = name;
+            OResults.Cache.currentSection = name;
             $("#" + name).show();
         }
         UI.showSection = showSection;
         async function setLanguage(newLanguage) {
             UI.language = newLanguage;
             await setupUI();
-            showSection(LLIResults.Cache.currentSection);
-            if (LLIResults.Cache.currentSection === "results") {
-                if (LLIResults.Cache.currentResultsMode === "Class") {
-                    await renderClassResults(LLIResults.Cache.currentClass);
+            showSection(OResults.Cache.currentSection);
+            if (OResults.Cache.currentSection === "results") {
+                if (OResults.Cache.currentResultsMode === "Class") {
+                    await renderClassResults(OResults.Cache.currentClass);
                 }
                 else {
-                    await renderClubResults(LLIResults.Cache.currentClub);
+                    await renderClubResults(OResults.Cache.currentClub);
                 }
             }
         }
@@ -220,5 +220,5 @@ var LLIResults;
         function formatTimeMinSec(time) {
             return `${time.getHours() * 60 + time.getMinutes()}:${time.getSeconds().toString().padStart(2, "0")}`;
         }
-    })(UI = LLIResults.UI || (LLIResults.UI = {}));
-})(LLIResults || (LLIResults = {}));
+    })(UI = OResults.UI || (OResults.UI = {}));
+})(OResults || (OResults = {}));
