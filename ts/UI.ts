@@ -1,4 +1,4 @@
-namespace LLIResults.UI {
+namespace OResults.UI {
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     export let language: Language.Language = new Language.Czech();
@@ -10,7 +10,7 @@ namespace LLIResults.UI {
 
     export async function setupUI(showClassSelect = false) {
         document.body.innerHTML = defaultState;
-        let comp = await LLIResults.LiveresultatAPI.Competition.initialize(Config.COMP_ID);
+        let comp = await LiveresultatAPI.Competition.initialize(Config.COMP_ID);
 
         $("#runner_name").text(language.runner_name);
         $("#runner_start").text(language.runner_start);

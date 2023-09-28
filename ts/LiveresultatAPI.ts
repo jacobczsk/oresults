@@ -1,4 +1,4 @@
-namespace LLIResults.LiveresultatAPI {
+namespace OResults.LiveresultatAPI {
     const BASE_URL = "https://liveresultat.orientering.se/api.php";
     export class Competition {
         private _lastClassesHash: string = "";
