@@ -53,14 +53,14 @@ var LLIResults;
             let wHeight = $(window).height() ?? 0;
             let next = (i + 1) % comp.classes.length;
             if (bHeight > (wHeight - cHeight - hHeight)) {
-                $("#crt_wrap")[0].scrollTo(0, 0);
+                $("#res_wrap")[0].scrollTo(0, 0);
                 let time = comp.classes[i].runners.length * 100;
                 $("#auto_time").attr("value", 0).animate({ value: 100 }, time * 5 + 1500, "linear");
                 await sleep(1500);
-                $("#crt_wrap").stop().animate({
-                    scrollTop: $("#crt_wrap")[0].scrollHeight
+                $("#res_wrap").stop().animate({
+                    scrollTop: $("#res_wrap")[0].scrollHeight
                 }, time * 3, "linear", async () => {
-                    $("#crt_wrap").stop().animate({
+                    $("#res_wrap").stop().animate({
                         scrollTop: 0
                     }, time * 2, "linear", async () => {
                         await sleep(1000);
