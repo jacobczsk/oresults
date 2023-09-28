@@ -1,4 +1,4 @@
-namespace LLIResults.Language {
+namespace OResults.Language {
     export abstract class Language {
         public abstract readonly live_results: string;
         public abstract readonly title: string;

@@ -1,4 +1,4 @@
-namespace LLIResults.Cache {
+namespace OResults.Cache {
     export let competition: LiveresultatAPI.Competition = new LiveresultatAPI.Competition();
     export let currentClass: LiveresultatAPI.Class = new LiveresultatAPI.Class("", 0);
     export let currentClub: LiveresultatAPI.Club = new LiveresultatAPI.Club("", 0);
