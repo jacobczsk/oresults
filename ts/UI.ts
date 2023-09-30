@@ -91,7 +91,7 @@ namespace OResults.UI {
             } else {
                 color = "";
             }
-            classList.append(`<button class='${color}' onclick="LLIResults.UI.showClassResults('${oClass.name}');">${oClass.name}</button>`);
+            classList.append(`<button class='${color}' onclick="OResults.UI.showClassResults('${oClass.name}');">${oClass.name}</button>`);
         }
         showSection('class_select');
     }
@@ -117,7 +117,7 @@ namespace OResults.UI {
         }
         tbody.html("");
         for (const runner of oClass.runners) {
-            tbody.append(`<tr><td>${runner.place}</td><td>${runner.name}</td><td><a href="javascript:LLIResults.UI.showClubResults('${runner.club}');">${runner.club}</a></td><td>${runner.start.toLocaleTimeString()}</td><td class="result">${getResult(runner)}</td><td>${getLost(runner)
+            tbody.append(`<tr><td>${runner.place}</td><td>${runner.name}</td><td><a href="javascript:OResults.UI.showClubResults('${runner.club}');">${runner.club}</a></td><td>${runner.start.toLocaleTimeString()}</td><td class="result">${getResult(runner)}</td><td>${getLost(runner)
                 }</td></tr>`)
         }
         last_now = new Date().getTime();
@@ -144,7 +144,7 @@ namespace OResults.UI {
         }
         tbody.html("");
         for (const runner of club.runners) {
-            tbody.append(`<tr><td>${runner.place}</td><td>${runner.name}</td><td><a href="javascript:LLIResults.UI.showClassResults('${runner.oClass}');">${runner.oClass}</a></td><td>${runner.start.toLocaleTimeString()}</td><td class="result">${getResult(runner)}</td><td>${getLost(runner)
+            tbody.append(`<tr><td>${runner.place}</td><td>${runner.name}</td><td><a href="javascript:OResults.UI.showClassResults('${runner.oClass}');">${runner.oClass}</a></td><td>${runner.start.toLocaleTimeString()}</td><td class="result">${getResult(runner)}</td><td>${getLost(runner)
                 }</td></tr>`)
         }
         last_now = new Date().getTime();
