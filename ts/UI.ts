@@ -24,7 +24,7 @@ namespace OResults.UI {
             $("#auto_time").hide();
             $("title").text(language.title);
             $("#select_class").text(`${language.select_class}:`);
-            $("#about_link").html(`<a href="javascript:LLIResults.UI.showSection('about')">${language.about_link}</a>`);
+            $("#about_link").html(`<a href="javascript:OResults.UI.showSection('about')">${language.about_link}</a>`);
             $("#about_html").html(language.about_html);
             $("#font").html(language.font);
             $(".back").html(`<i class="bi bi-arrow-left"></i> ${language.back}`).on('click', () => renderClassList(comp));

@@ -23,7 +23,7 @@ var OResults;
                 $("#auto_time").hide();
                 $("title").text(UI.language.title);
                 $("#select_class").text(`${UI.language.select_class}:`);
-                $("#about_link").html(`<a href="javascript:LLIResults.UI.showSection('about')">${UI.language.about_link}</a>`);
+                $("#about_link").html(`<a href="javascript:OResults.UI.showSection('about')">${UI.language.about_link}</a>`);
                 $("#about_html").html(UI.language.about_html);
                 $("#font").html(UI.language.font);
                 $(".back").html(`<i class="bi bi-arrow-left"></i> ${UI.language.back}`).on('click', () => renderClassList(comp));
