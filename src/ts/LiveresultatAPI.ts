@@ -4,7 +4,7 @@ namespace OResults.LiveresultatAPI {
         private _lastClassesHash: string = "";
         private _name: string = "";
         private _organizer: string = "";
-        private _date: number = Date.now();
+        private _date: Date = new Date();
         private _public: boolean = false;
         private _id: number = 0;
         private _classes: Class[] = [];
@@ -19,7 +19,7 @@ namespace OResults.LiveresultatAPI {
                 comp._id = compData.id;
                 comp._name = compData.name;
                 comp._organizer = compData.organizer;
-                comp._date = Date.parse(compData.date);
+                comp._date = new Date(Date.parse(compData.date));
                 comp._public = compData.isPublic;
                 Cache.competition = comp;
             } else {

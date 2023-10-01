@@ -17,7 +17,7 @@ namespace OResults.UI {
         $("#runner_result").text(language.runner_result);
         $("#runner_plus").text(language.runner_plus);
 
-        $("#comp_name").text(comp.name);
+        $("#comp_name").text(`${comp.name} - ${comp.date.toLocaleDateString()}`);
         $("#live_results").text(language.live_results);
 
         if (window.location.hash !== "#auto") {
