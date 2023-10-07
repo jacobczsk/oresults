@@ -3,6 +3,7 @@ namespace OResults.UI {
 
     export let language: Language.Language = new Language.Czech();
     let defaultState: string;
+    export let watchDog = new WatchDog.WatchDog();
 
     export function saveDefaultState() {
         defaultState = document.body.innerHTML;
@@ -16,13 +17,15 @@ namespace OResults.UI {
         $("#runner_start").text(language.runner_start);
         $("#runner_result").text(language.runner_result);
         $("#runner_plus").text(language.runner_plus);
+        $("#alert").hide();
 
-        $("#comp_name").text(comp.name);
+        $("#comp_name").text(`${comp.name} - ${comp.date.toLocaleDateString()}`);
         $("#live_results").text(language.live_results);
 
         if (window.location.hash !== "#auto") {
             $("#auto_time").hide();
             $("title").text(language.title);
+            $("#follow").text(language.follow);
             $("#select_class").text(`${language.select_class}:`);
             $("#about_link").html(`<a href="javascript:OResults.UI.showSection('about')">${language.about_link}</a>`);
             $("#about_html").html(language.about_html);
@@ -33,6 +36,7 @@ namespace OResults.UI {
             if (showClassSelect)
                 showSection("class_select");
         } else {
+            $("#follow").hide();
             $("#lang_select, #about_link, .back").hide();
             $("#logo").hide().attr("height", $("header").height() ?? 150).attr("src", Config.LOGO_PATH).show();
             showSection('results');
@@ -217,5 +221,22 @@ namespace OResults.UI {
 
     function formatTimeMinSec(time: Date) {
         return `${time.getHours() * 60 + time.getMinutes()}:${time.getSeconds().toString().padStart(2, "0")}`
+    }
+
+    export function showAlert(message: string) {
+        $("#alert_text").text(message);
+        $("#alert").show();
+    }
+
+    export function closeAlert() {
+        $("#alert").hide();
+        $("#logo").hide().attr("height", $("header").height() ?? 150).show();
+    }
+
+    export function followCurrent() {
+        if (Cache.currentResultsMode === "Class") {
+            watchDog.addWatchedClass(Cache.currentClass);
+        }
+        if (!watchDog.started) watchDog.start();
     }
 }

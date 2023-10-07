@@ -15,6 +15,8 @@ namespace OResults.Language {
         public abstract readonly loading: string;
         public abstract readonly states: string[];
         public abstract readonly font: string;
+        public abstract readonly watchDogAlert: string;
+        public abstract readonly follow: string;
     }
 
     export class Czech implements Language {
@@ -33,6 +35,8 @@ namespace OResults.Language {
         public readonly runner_plus = "Ztráta";
         public readonly states = ["OK", "DNS", "DNF", "DISK (MP)", "DISK", "PL", "Nestartoval", "Nestartoval", "", "Na trati"];
         public readonly font = "Použité písmo: ";
+        public readonly watchDogAlert = "Povolte, prosím, oznámení.";
+        public readonly follow = "Sledovat";
     }
 
     export class English implements Language {
@@ -51,5 +55,7 @@ namespace OResults.Language {
         public readonly runner_plus = "Lost";
         public readonly states = ["OK", "DNS", "DNF", "MP", "DSQ", "OVT", "Not started yet", "Not started yet", "", "Running"];
         public readonly font = "Used font: ";
+        public readonly watchDogAlert = "Please enable notifications.";
+        public readonly follow = "Follow";
     }
 }

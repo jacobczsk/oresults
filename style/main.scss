@@ -50,6 +50,24 @@ header {
                 }
             }
         }
+
+        #alert {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: rgba($alert-color, 0.5);
+            border: 1px solid $alert-color;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: large;
+
+            .close {
+                background: none;
+                border: none;
+                margin: 2px;
+                cursor: pointer;
+            }
+        }
     }
 }
 
@@ -93,6 +111,12 @@ header {
     #results {
         display: flex;
         flex-direction: column;
+
+        #follow {
+            padding: 3px;
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
 
         h2 {
             display: inline-block;

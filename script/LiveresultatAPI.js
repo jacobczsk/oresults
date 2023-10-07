@@ -8,7 +8,7 @@ var OResults;
             _lastClassesHash = "";
             _name = "";
             _organizer = "";
-            _date = Date.now();
+            _date = new Date();
             _public = false;
             _id = 0;
             _classes = [];
@@ -23,7 +23,7 @@ var OResults;
                     comp._id = compData.id;
                     comp._name = compData.name;
                     comp._organizer = compData.organizer;
-                    comp._date = Date.parse(compData.date);
+                    comp._date = new Date(Date.parse(compData.date));
                     comp._public = compData.isPublic;
                     OResults.Cache.competition = comp;
                 }

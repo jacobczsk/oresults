@@ -6,6 +6,7 @@ var OResults;
         const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
         UI.language = new OResults.Language.Czech();
         let defaultState;
+        UI.watchDog = new OResults.WatchDog.WatchDog();
         function saveDefaultState() {
             defaultState = document.body.innerHTML;
         }
@@ -17,11 +18,13 @@ var OResults;
             $("#runner_start").text(UI.language.runner_start);
             $("#runner_result").text(UI.language.runner_result);
             $("#runner_plus").text(UI.language.runner_plus);
-            $("#comp_name").text(comp.name);
+            $("#alert").hide();
+            $("#comp_name").text(`${comp.name} - ${comp.date.toLocaleDateString()}`);
             $("#live_results").text(UI.language.live_results);
             if (window.location.hash !== "#auto") {
                 $("#auto_time").hide();
                 $("title").text(UI.language.title);
+                $("#follow").text(UI.language.follow);
                 $("#select_class").text(`${UI.language.select_class}:`);
                 $("#about_link").html(`<a href="javascript:OResults.UI.showSection('about')">${UI.language.about_link}</a>`);
                 $("#about_html").html(UI.language.about_html);
@@ -33,6 +36,7 @@ var OResults;
                     showSection("class_select");
             }
             else {
+                $("#follow").hide();
                 $("#lang_select, #about_link, .back").hide();
                 $("#logo").hide().attr("height", $("header").height() ?? 150).attr("src", OResults.Config.LOGO_PATH).show();
                 showSection('results');
@@ -220,5 +224,23 @@ var OResults;
         function formatTimeMinSec(time) {
             return `${time.getHours() * 60 + time.getMinutes()}:${time.getSeconds().toString().padStart(2, "0")}`;
         }
+        function showAlert(message) {
+            $("#alert_text").text(message);
+            $("#alert").show();
+        }
+        UI.showAlert = showAlert;
+        function closeAlert() {
+            $("#alert").hide();
+            $("#logo").hide().attr("height", $("header").height() ?? 150).show();
+        }
+        UI.closeAlert = closeAlert;
+        function followCurrent() {
+            if (OResults.Cache.currentResultsMode === "Class") {
+                UI.watchDog.addWatchedClass(OResults.Cache.currentClass);
+            }
+            if (!UI.watchDog.started)
+                UI.watchDog.start();
+        }
+        UI.followCurrent = followCurrent;
     })(UI = OResults.UI || (OResults.UI = {}));
 })(OResults || (OResults = {}));

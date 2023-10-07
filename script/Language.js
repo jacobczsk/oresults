@@ -22,6 +22,8 @@ var OResults;
             runner_plus = "Ztráta";
             states = ["OK", "DNS", "DNF", "DISK (MP)", "DISK", "PL", "Nestartoval", "Nestartoval", "", "Na trati"];
             font = "Použité písmo: ";
+            watchDogAlert = "Povolte, prosím, oznámení.";
+            follow = "Sledovat";
         }
         Language_1.Czech = Czech;
         class English {
@@ -40,6 +42,8 @@ var OResults;
             runner_plus = "Lost";
             states = ["OK", "DNS", "DNF", "MP", "DSQ", "OVT", "Not started yet", "Not started yet", "", "Running"];
             font = "Used font: ";
+            watchDogAlert = "Please enable notifications.";
+            follow = "Follow";
         }
         Language_1.English = English;
     })(Language = OResults.Language || (OResults.Language = {}));

@@ -11,6 +11,7 @@
     <script src="./script/Language.js"></script>
     <script src="./script/LiveresultatAPI.js"></script>
     <script src="./script/Cache.js"></script>
+    <script src="./script/WatchDog.js"></script>
     <script src="./script/UI.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -34,6 +35,13 @@
                         alt="British flag" height="15px"></button>
             </div>
             <span id="about_link"></span>
+            <div id="alert">
+                <div>
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span id="alert_text"></span>
+                </div>
+                <div onclick="OResults.UI.closeAlert();"><i class="bi bi-x-lg close"></i></div>
+            </div>
         </div>
     </header>
     <hr>
@@ -46,6 +54,7 @@
             <div>
                 <button class="back"></button>
                 <h2 id="page_name"></h2>
+                <!-- <button id="follow" onclick="OResults.UI.followCurrent();"></button> -->
                 <progress id="auto_time" max="100" value="0"></progress>
             </div>
             <div id="res_wrap">
